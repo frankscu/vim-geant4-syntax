@@ -18,6 +18,9 @@ elseif exists("b:current_syntax")
         setfiletype cpp
 
         let b:cpp = 1
+    
+    else 
+        finish
 
     endif
 endif
