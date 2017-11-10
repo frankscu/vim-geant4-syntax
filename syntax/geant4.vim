@@ -7,52 +7,9 @@
 " Remark:      Place file:  $VIMRUNTIME/syntax/geant4-syntax.vim
 " Remark:      Geant4 website: http://geant4.cern.ch/
 
-if v:version < 600
-    finish
-elseif exists("b:current_syntax")
-
-    " Is language C++
-    if b:current_syntax ==? "c" || b:current_syntax ==? "cpp" || b:current_syntax ==? "cc"
-
-        " Ensure C++ syntax is loaded, rather than C
-        setfiletype cpp
-
-        let b:cpp = 1
-    
-    elseif b:current_syntax ==? "python"
-        let b:cpp = 0
-    else 
-        finish
-
-    endif
+if !exists("b:c_no_cern_geant4")
+    syn keyword	cType	 G4double G4int G4string G4ThreeVector
+    syn keyword	cType    G4cout G4cin G4endl G4cerr
+    syn keyword	cConstant	mm ns MeV keV radian degree
 endif
 
-if !empty(b:cpp)
-
-    " Primitive Typedefs
-    syntax keyword Typedef
-                \ G4double G4int G4string 
-                \ G4ThreeVector
-                \ G4cout G4cin G4endl
-                \ G4cerr
-
-endif
-
-syntax keyword Constant
-            \ mm 
-            \ ns
-            \ MeV keV
-            \ eplus
-            \ kelvin
-            \ mole
-            \ candela
-            \ radian
-            \ steradian
-
-if empty(b:cpp)
-    let b:current_syntax = "PyGEANT4"
-else
-    let b:current_syntax = "C++/GEANT4"
-endif
-
-unlet b:cpp
