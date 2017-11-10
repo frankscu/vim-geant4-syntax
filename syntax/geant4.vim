@@ -30,7 +30,7 @@ endif
 if !empty(b:cpp)
 
     " Primitive Typedefs
-    syntax keyword geant4Typedef
+    syntax keyword Typedef
                 \ G4double G4int G4string 
                 \ G4ThreeVector
                 \ G4cout G4cin G4endl
@@ -38,7 +38,7 @@ if !empty(b:cpp)
 
 endif
 
-syntax keyword geant4UnitConstant
+syntax keyword Constant
             \ mm 
             \ ns
             \ MeV keV
@@ -48,10 +48,6 @@ syntax keyword geant4UnitConstant
             \ candela
             \ radian
             \ steradian
-
-
-hi link geant4Typedef Typedef
-hi link geant4UnitConstant Constant
 
 if empty(b:cpp)
     let b:current_syntax = "PyGEANT4"
