@@ -19,6 +19,8 @@ elseif exists("b:current_syntax")
 
         let b:cpp = 1
     
+    elseif b:current_syntax ==? "python"
+        let b:cpp = 0
     else 
         finish
 
@@ -30,26 +32,30 @@ if !empty(b:cpp)
     " Primitive Typedefs
     syntax keyword geant4Typedef
                 \ G4double G4int G4string 
+                \ G4ThreeVector
                 \ G4cout G4cin G4endl
                 \ G4cerr
-    
-    syntax keyword geantUnitConstant
-                \ mm 
-                \ ns
-                \ MeV keV
-                \ eplus
-                \ kelvin
-                \ mole
-                \ candela
-                \ radian
-                \ steradian
+
 endif
 
+syntax keyword geant4UnitConstant
+            \ mm 
+            \ ns
+            \ MeV keV
+            \ eplus
+            \ kelvin
+            \ mole
+            \ candela
+            \ radian
+            \ steradian
 
-highlight default link geant4Typedef Typedef
-highlight default link geant4UnitConstant Constant
 
-if !empty(b:cpp)
+hi link geant4Typedef Typedef
+hi link geant4UnitConstant Constant
+
+if empty(b:cpp)
+    let b:current_syntax = "PyGEANT4"
+else
     let b:current_syntax = "C++/GEANT4"
 endif
 
